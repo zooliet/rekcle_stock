@@ -1,0 +1,13 @@
+tensorflow==1.15
+keras
+pandas
+pywavelets
+scikit-learn
+matplotlib
+joblib
+aiofiles 
+aiohttp 
+aiomultiprocess 
+aioredis 
+hbmqtt
+
