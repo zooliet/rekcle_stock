@@ -27,7 +27,7 @@ if __name__ == '__main__':
 
     # CLI 파싱
     import argparse
-    from lib.utils import BooleanAction
+    from libs.utils import BooleanAction
 
     ap = argparse.ArgumentParser()
     ap.add_argument('-a', '--assets', required=True, help='종목1, 종목2, 종목3')

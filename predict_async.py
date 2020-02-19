@@ -18,18 +18,18 @@ import json
 import logging
 import logging.config
 
-from lib.loaders import StockDatasetLoader
-from lib.preprocessing import LabelGenerator
-from lib.preprocessing import FeatureSelector
-from lib.preprocessing import WaveletTransform
-from lib.preprocessing import Scaler
-from lib.preprocessing import TimeseriesSequence
-from lib.preprocessing import SimpleClassifier
-from lib.preprocessing import ColumnRemover
+from libs.loaders import StockDatasetLoader
+from libs.preprocessing import LabelGenerator
+from libs.preprocessing import FeatureSelector
+from libs.preprocessing import WaveletTransform
+from libs.preprocessing import Scaler
+from libs.preprocessing import TimeseriesSequence
+from libs.preprocessing import SimpleClassifier
+from libs.preprocessing import ColumnRemover
 
-from lib.nn import RekcleLSTM
-from lib.nn import RekcleTCN
-from lib.nn import RekcleSTCN
+from libs.nn import RekcleLSTM
+from libs.nn import RekcleTCN
+from libs.nn import RekcleSTCN
 
 from sklearn.externals import joblib
 
@@ -140,7 +140,7 @@ if __name__ == '__main__':
 
     # CLI 파싱
     import argparse
-    from lib.utils import BooleanAction
+    from libs.utils import BooleanAction
 
     ap = argparse.ArgumentParser()
     ap.add_argument('-a', '--asset', required=True, help='종목 코드')
