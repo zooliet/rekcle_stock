@@ -15,8 +15,8 @@ from keras.layers.merge import concatenate
 from keras.optimizers import SGD, Adam
 from keras.utils import np_utils
 
-from lib.callbacks import TrainingMonitor
-from lib.callbacks import EpochCheckpoint
+from libs.callbacks import TrainingMonitor
+from libs.callbacks import EpochCheckpoint
 from keras.callbacks import ModelCheckpoint
 
 class RekcleLSTM:
@@ -173,12 +173,15 @@ class RekcleLSTM:
         y = np_utils.to_categorical(y, num_classes)
         y_valid = np_utils.to_categorical(y_valid, num_classes)
 
-        callbacks = [TrainingMonitor(epoch_at=epoch_at, output_path=f'./output/{asset}_{iter:03d}', logger=self.logger)]
-        # if self.args['save']:
-        #     # callbacks.append(EpochCheckpoint(epoch_at=epoch_at, output_path=f'./models/{asset}', every=5, logger=self.logger))
-        #     # model_path = f"./models/{asset}_"+"{epoch:03d}-{val_loss:.4f}.hdf5"
-        #     model_path = f"./models/{asset}_{iter:03d}"+"-{val_loss:.4f}.hdf5"
-        #     callbacks.append(ModelCheckpoint(model_path, monitor="val_loss", mode="min", save_best_only=True, verbose=1))
+        callbacks = [TrainingMonitor(epoch_at=epoch_at, output_path=f'./plots/{asset}_{iter:03d}', logger=self.logger)]
+        if self.args['save']:
+            pass
+            # model_path = f"./tmp/{asset}_{iter:03d}"
+            # callbacks.append(EpochCheckpoint(epoch_at=epoch_at, model_path=f'./tmp/{model_path}', every=5, logger=self.logger))
+            # or
+            # # model_path = f"./tmp/{asset}_"+"{epoch:03d}-{val_loss:.4f}.hdf5"
+            # model_path = f"./tmp/{asset}_{iter:03d}"+"-{val_loss:.4f}.hdf5"
+            # callbacks.append(ModelCheckpoint(model_path, monitor="val_loss", mode="min", save_best_only=True, verbose=1))
 
         params = {
             'epochs': self.args.get('epochs', 100),
@@ -224,7 +227,8 @@ class RekcleLSTM:
 
     def save(self, iter=0):
         asset = self.args.get('asset', 'Test')
+        arch = self.args.get('arch', 'arch')
         # path = f"./models/{asset}_{iter:03d}.hdf5"
-        path = f"./models/{asset}.hdf5"
-        self.logger.info(f'Saving a model to {path}')
-        self.inner_model.save(path, overwrite=True)
+        model_path = f"./models/{asset}_{arch}.model.hdf5"
+        self.logger.info(f'Saving a model to {model_path}')
+        self.inner_model.save(model_path, overwrite=True)

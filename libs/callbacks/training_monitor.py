@@ -9,7 +9,7 @@ from keras.callbacks import BaseLogger
 import matplotlib.pyplot as plt
 
 class TrainingMonitor(BaseLogger):
-    def __init__(self, epoch_at=0, output_path='./output/test', logger=None):
+    def __init__(self, epoch_at=0, output_path='./', logger=None):
         # store the output path for the figure, the path to the JSON
         # serialized file, and the starting epoch
         super(TrainingMonitor, self).__init__()

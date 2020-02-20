@@ -42,7 +42,7 @@ if __name__ == '__main__':
     ap.add_argument('-e', '--epochs', type=int, default=100, help='# of epochs: 100*')
     ap.add_argument('-b', '--batch_size', type=int, default=32, help='# of batch_size: 32*')
     ap.add_argument('-l', '--lr', type=float, default=0.001, help='learning rate: 0.001*')
-    ap.add_argument('--iter', type=int, default=10, help='# of iteration: 10*')
+    ap.add_argument('--iter', type=int, default=1, help='# of iteration: 1*')
     ap.add_argument('--wavelet', '--no-wavelet', dest='wavelet', default=True, action=BooleanAction, help='wavelet transform 실행 여부: T*')
     ap.add_argument('--train', '--no-train', dest='train', default=False, action=BooleanAction, help='training 실행 여부')
     ap.add_argument('--predict', '--no-predict', dest='predict', default=False, action=BooleanAction, help='prediction 실행 여부')
@@ -66,5 +66,7 @@ if __name__ == '__main__':
 
         # pdb.set_trace()
         if args.get('predict'):
-            args['model'] = f'./models/{asset}.hdf5'
+            if args.get('save'):
+                arch = args['arch']
+                args['model'] = f'./models/{asset}_{arch}.model.hdf5'
             predict(args, logger=logger)

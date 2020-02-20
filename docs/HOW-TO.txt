@@ -1,0 +1,16 @@
+
+1. training
+./train_and_eval.py -a SSE -p 100 -e 2 --save
+./train_and_eval.py --asset SSE --preset 100 --epoch 2 --save
+
+2. prediction
+./predict.py -a SSE -p 100
+
+3. training and prediction
+./main.py -a SSE,SKT,POS -p 100 -e 2 --train --predict --save
+./main.py --assets SSE,SKT,POS -p 100 -e 2 --train --predict --save
+
+4. asynchronous prediction
+./predict_async.py -p 100
+redis-cli
+publish rekcle:predict asset

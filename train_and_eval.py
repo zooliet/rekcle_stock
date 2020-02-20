@@ -74,7 +74,9 @@ def train_and_eval(args, logger):
         scalers.append(scaler)
 
     # scalers 저장
-    scaler_path = f"./models/{args.get('asset')}_scaler.pkl"
+    asset = args.get('asset')
+    arch = args.get('arch')
+    scaler_path = f"./models/{asset}_{arch}.scaler.pkl"
     joblib.dump(scalers, scaler_path)
 
     # Timeseries 시퀀스로 재정렬
@@ -116,7 +118,7 @@ def train_and_eval(args, logger):
     model.build(**args)
 
     if args.get('train'):
-        acc_threshold = 0.5
+        acc_threshold = 0.2
         num_iter = args.get('iter', 10)
         for i in range(num_iter):
             logger.info(f"[{args.get('asset')}] Iteration starts... ({i+1}/{num_iter})")
@@ -163,10 +165,10 @@ if __name__ == '__main__':
     ap.add_argument('-e', '--epochs', type=int, default=100, help='# of epochs: 100*')
     ap.add_argument('-b', '--batch_size', type=int, default=32, help='# of batch_size: 32*')
     ap.add_argument('-l', '--lr', type=float, default=0.001, help='learning rate: 0.001*')
-    ap.add_argument('--iter', type=int, default=10, help='# of iteration: 10*')
+    ap.add_argument('--iter', type=int, default=1, help='# of iteration: 1*')
     ap.add_argument('--wavelet', '--no-wavelet', dest='wavelet', default=True, action=BooleanAction, help='wavelet transform 실행 여부: T*')
     ap.add_argument('--train', '--no-train', dest='train', default=False, action=BooleanAction, help='training 실행 여부')
-    ap.add_argument('--predict', '--no-predict', dest='predict', default=False, action=BooleanAction, help='prediction 실행 여부')
+    # ap.add_argument('--predict', '--no-predict', dest='predict', default=False, action=BooleanAction, help='prediction 실행 여부')
     ap.add_argument('--save', '--no-save', dest='save', default=False, action=BooleanAction, help='whether or not to save a model: F*')
     ap.add_argument('--pic', '--no-pic', dest='pic', default=False, action=BooleanAction, help='whether or not to show a graph: F*')
     ap.add_argument('--debug', '--no-debug', dest='debug', default=False, action=BooleanAction, help='디버거 사용 유무')

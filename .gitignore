@@ -5,11 +5,13 @@
 *.dat
 *.hdf5
 *.h5
+*.log
+*.pkl
 tmp/
 output/
-models/
-log/
-dataset/
+#models/
+#log/
+#dataset/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
