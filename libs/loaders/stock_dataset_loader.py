@@ -26,7 +26,6 @@ class StockDatasetLoader:
             df = df[from_date:]
 
         self.logger.debug("StockDataset: \n{}\n".format(np.round(df,4)))
-        # self.logger.debug("StockDataset: \n{}\n".format(np.round(df.head().append(df.tail()),4)))
         # self.pristine = df.copy()
         return df
 

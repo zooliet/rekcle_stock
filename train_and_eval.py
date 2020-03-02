@@ -132,7 +132,7 @@ def train_and_eval(args, logger):
 
     if args['debug']:
         from keras import backend as K
-        pdb.set_trace()
+        # pdb.set_trace()
         # import code
         # code.interact(local=locals())
         # model.args['epoch_at'] += model.args['epochs']
@@ -177,6 +177,9 @@ if __name__ == '__main__':
     args = vars(ap.parse_args())
     if args['verbose']:
         logger.setLevel(logging.DEBUG)
+
+    if args['debug']:
+        pdb.set_trace()
 
     logger.info(f"Argument: \n{args}\n")
     train_and_eval(args, logger=logger)
