@@ -145,7 +145,8 @@ class RekcleLSTM:
             x = concatenate([x_cA, x_cD])
             output = Dense(num_classes)(x)
             model = Model(inputs=[input_cA, input_cD], outputs=output)
-            optimizer = Adam(lr=lr, beta_1=0.9, beta_2=0.999, epsilon=None, decay=0.0, amsgrad=False)
+            # optimizer = Adam(lr=lr, beta_1=0.9, beta_2=0.999, epsilon=None, decay=0.0, amsgrad=False)
+            optimizer = Adam(lr=lr, beta_1=0.9, beta_2=0.999, decay=0.0, amsgrad=False)
             model.compile(optimizer=optimizer, loss='categorical_crossentropy', metrics=['accuracy'])
             # model.compile(optimizer=optimizer, loss='binary_crossentropy', metrics=['binary_accuracy'])
             self.inner_model = model
